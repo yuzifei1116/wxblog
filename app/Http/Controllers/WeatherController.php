@@ -57,4 +57,10 @@ class WeatherController extends Controller
         $output = json_decode($output, true);
         return $output;
     }
+
+    public function yuziyi()
+    {
+        # code...
+        return view('yuziyi');
+    }
 }

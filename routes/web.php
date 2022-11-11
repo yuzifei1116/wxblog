@@ -17,3 +17,5 @@ Route::get('/', function () {
 }); 
 
 Route::any('/weather', 'WeatherController@getWeather');
+
+Route::any('/yuziyi', 'WeatherController@yuziyi');
