@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Img;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -16,7 +18,7 @@ class WeatherController extends Controller
         # code...
         $hour = date('H', time());
         $cache_hour = Cache::get('hour');
-        if($hour != $cache_hour) {
+        if ($hour != $cache_hour) {
             Cache::forget('weather');
         }
         if (Cache::get('weather')) {
@@ -35,11 +37,22 @@ class WeatherController extends Controller
                 if ($h == $hour) {
                     Cache::put('hour', $h, 600);
                     $data['now_weather'] = $v;
-                    $data['now'] = $hour.'点';
+                    $data['now'] = $hour . '点';
                 }
             }
             Cache::put('weather', $data, 300);
         }
+        return response()->json(['success' => ['message' => '获取成功!', 'data' => $data]]);
+    }
+
+    /**
+     * @description: 获取相册
+     * @return {*}
+     */
+    public function getImgs(Request $request)
+    {
+        # code...
+        $data = Img::where('is_del','!=',1)->get();
         return response()->json(['success' => ['message' => '获取成功!', 'data' => $data]]);
     }
 

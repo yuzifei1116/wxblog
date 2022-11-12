@@ -18,4 +18,6 @@ Route::get('/', function () {
 
 Route::any('/weather', 'WeatherController@getWeather');
 
+Route::any('/getImgs', 'WeatherController@getImgs');
+
 Route::any('/yuziyi', 'WeatherController@yuziyi');
