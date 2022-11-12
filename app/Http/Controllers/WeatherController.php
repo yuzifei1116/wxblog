@@ -53,6 +53,10 @@ class WeatherController extends Controller
     {
         # code...
         $data = Img::where('is_del','!=',1)->get();
+        foreach ($data as $key => &$value) {
+            # code...
+            $value->img = json_decode($value->img,true);
+        }
         return response()->json(['success' => ['message' => '获取成功!', 'data' => $data]]);
     }
 
