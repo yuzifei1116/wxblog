@@ -20,4 +20,6 @@ Route::any('/weather', 'WeatherController@getWeather');
 
 Route::any('/getImgs', 'WeatherController@getImgs');
 
+Route::any('/addImg', 'WeatherController@addImg');
+
 Route::any('/yuziyi', 'WeatherController@yuziyi');

@@ -60,6 +60,12 @@ class WeatherController extends Controller
         return response()->json(['success' => ['message' => '获取成功!', 'data' => $data]]);
     }
 
+    public function addImg(Request $request)
+    {
+        # code...
+        dd($_FILES);
+    }
+
     public function weather($url)
     {
         $headerArray = array("Content-type:application/json;", "Accept:application/json");
