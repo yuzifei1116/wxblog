@@ -69,7 +69,7 @@ class WeatherController extends Controller
         $fileName = $request->file('fileData')->store('files', 'tmp');
         // $data = Storage::putFile('/public/uploads/files', $request->file('fileData'));
         $path = env('APP_URL') . 'uploads/' . $fileName;
-        $img = json_encode($path);
+        $img = json_encode([$path]);
         Img::create([
             'img'   =>  $img
         ]);
