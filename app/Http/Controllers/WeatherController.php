@@ -54,10 +54,6 @@ class WeatherController extends Controller
     {
         # code...
         $data = Img::where('is_del','!=',1)->get();
-        foreach ($data as $key => &$value) {
-            # code...
-            $value->img = json_decode($value->img,true);
-        }
         return response()->json(['success' => ['message' => '获取成功!', 'data' => $data]]);
     }
 
@@ -69,9 +65,9 @@ class WeatherController extends Controller
         $fileName = $request->file('fileData')->store('files', 'tmp');
         // $data = Storage::putFile('/public/uploads/files', $request->file('fileData'));
         $path = env('APP_URL') . 'uploads/' . $fileName;
-        $img = json_encode([$path]);
+        
         Img::create([
-            'img'   =>  $img
+            'img'   =>  $path
         ]);
         return response()->json(['success' => ['message' => '上传成功!', 'data' => $fileName]]);
     }
