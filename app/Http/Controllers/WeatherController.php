@@ -6,6 +6,7 @@ use App\Models\Img;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class WeatherController extends Controller
 {
@@ -63,7 +64,14 @@ class WeatherController extends Controller
     public function addImg(Request $request)
     {
         # code...
-        dd($request->file('fileData'));
+        // $data = $request->file('fileData');
+        // $fileName = $data->store('files', 'tmp');
+        $fileName = $request->file('fileData')->store('files', 'tmp');
+        // $data = Storage::putFile('/public/uploads/files', $request->file('fileData'));
+        Img::create([
+            'img'   =>  env('APP_URL') . 'uploads/' . $fileName
+        ]);
+        return response()->json(['success' => ['message' => '上传成功!', 'data' => $fileName]]);
     }
 
     public function weather($url)
