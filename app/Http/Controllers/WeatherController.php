@@ -63,7 +63,7 @@ class WeatherController extends Controller
     public function addImg(Request $request)
     {
         # code...
-        dd($request->all());
+        dd($_FILES);
     }
 
     public function weather($url)
