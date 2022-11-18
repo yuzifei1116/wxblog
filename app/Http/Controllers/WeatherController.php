@@ -72,6 +72,17 @@ class WeatherController extends Controller
         return response()->json(['success' => ['message' => '上传成功!', 'data' => $fileName]]);
     }
 
+    /**
+     * @description: 删除图片
+     * @return {*}
+     */    
+    public function delImg(Request $request)
+    {
+        # code...
+        $data = Img::where('id',$request->id)->delete();
+        return response()->json(['success' => ['message' => '成功!', 'data' => []]]);
+    }
+
     public function weather($url)
     {
         $headerArray = array("Content-type:application/json;", "Accept:application/json");
